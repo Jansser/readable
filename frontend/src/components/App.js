@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CategoriesList from './CategoriesList';
+import CategoryList from './CategoryList';
+import PostList from './PostList';
 import '../App.css';
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
       <div className="ui container">
         <h1>Readable</h1>
 
-        <CategoriesList />
+        <CategoryList />
+        <PostList />
       </div>
     );
   }

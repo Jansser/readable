@@ -6,9 +6,10 @@ import { fetchCategories } from '../actions/categories';
 import { Menu } from 'semantic-ui-react';
 
 
-class CategoriesList extends Component {
+class CategoryList extends Component {
   static propTypes = {
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array.isRequired,
+    getCategories: PropTypes.func
   };
 
   componentDidMount () {
@@ -42,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(fetchCategories())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);
