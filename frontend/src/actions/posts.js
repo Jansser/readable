@@ -1,5 +1,5 @@
 import * as API from '../utils/api';
-import { GET_POSTS } from './types';
+import { GET_POSTS, SET_ORDER_POSTS } from './types';
 
 export const getPosts = (posts) => {
     return {
@@ -13,3 +13,12 @@ export const fetchPosts = () => (dispatch) =>
         dispatch(getPosts(data))
     }
 );
+
+export const setOrderPosts = (orderBy) => {
+    console.log(orderBy);
+    
+    return {
+        type: SET_ORDER_POSTS,
+        orderBy: orderBy
+    }
+}

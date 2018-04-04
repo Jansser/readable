@@ -1,33 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchPosts } from '../actions/posts';
+import { fetchPosts, setOrderPosts } from '../actions/posts';
 import Post from './Post';
 import sortBy from 'sort-by';
+import { Dropdown, Menu } from 'semantic-ui-react';
 
 class PostList extends Component {
   static propTypes = {
     posts: PropTypes.array.isRequired,
-    getPosts: PropTypes.func
+    orderBy: PropTypes.string.isRequired,
+    getPosts: PropTypes.func,
+    setOrderPosts: PropTypes.func
   };
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.getPosts();
   }
 
-  render() {
-    const { posts } = this.props;
+  handleSortChange =(event, data) => {
+    this.props.setOrderPosts(data.value);
+  }
 
-    if(posts) {
-      posts.sort(sortBy('-voteScore'));
+  render() {
+    const { posts, orderBy } = this.props;
+
+    const sortOptions = [
+      {
+        text: 'Vote Score',
+        value: '-voteScore'
+      },
+      {
+        text: 'Date',
+        value: '-timestamp'
+      }
+    ];
+
+    if (posts) {
+      posts.sort(sortBy(orderBy));
     }
-    
+
     return (
       <div>
         <h2>{posts.length} posts</h2>
+        <Menu compact>
+          <Dropdown text='SortBy' options={sortOptions} defaultValue={orderBy} onChange={this.handleSortChange} simple item />
+        </Menu>
 
-        {posts.map( post => (
-          <Post key={post.id} post={post}/>          
+        {posts.map(post => (
+          <Post key={post.id} post={post} />
         ))}
       </div>
     );
@@ -36,12 +57,14 @@ class PostList extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
+    posts: state.posts.posts,
+    orderBy: state.posts.orderBy
   };
 }
 
 const mapDispatchToProps = dispatch => ({
-  getPosts: () => dispatch(fetchPosts())
+  getPosts: () => dispatch(fetchPosts()),
+  setOrderPosts: (orderBy) => dispatch(setOrderPosts(orderBy))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

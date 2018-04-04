@@ -15,6 +15,7 @@ class Post extends Component {
       <div>
         <span>{post.voteScore}</span>
         <p>{post.body}</p>
+        <p>{post.timestamp}</p>
       </div>
     </Segment>)
   }
