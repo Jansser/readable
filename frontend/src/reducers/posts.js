@@ -1,6 +1,7 @@
 import { 
     GET_POSTS,
-    SET_ORDER_POSTS
+    SET_ORDER_POSTS,
+    GET_CATEGORY_POSTS
 } from '../actions/types';
 
 const posts = (state = { posts: [], orderBy: '-voteScore' }, action) => {
@@ -14,6 +15,11 @@ const posts = (state = { posts: [], orderBy: '-voteScore' }, action) => {
             return {
                 ...state,
                 orderBy: action.orderBy
+            };
+        case GET_CATEGORY_POSTS:
+            return {
+              ...state,
+              posts: action.posts
             };
         default:
             return state;

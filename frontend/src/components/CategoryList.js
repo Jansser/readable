@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { fetchCategories } from '../actions/categories';
 import { Menu } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 class CategoryList extends Component {
@@ -25,8 +26,14 @@ class CategoryList extends Component {
           <Menu.Header>Categories</Menu.Header>
         </Menu.Item>
         
+        <Menu.Item>
+          <Link to='/'>All</Link>
+        </Menu.Item>
+        
         {categories.map(category => (
-          <Menu.Item key={category.name}>{category.name}</Menu.Item>
+          <Menu.Item key={category.name}>
+            <Link to={`/${category.path}`}> {category.name} </Link>
+          </Menu.Item>
         ))}
       </Menu>
     );

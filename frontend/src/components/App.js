@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import CategoryList from './CategoryList';
-import PostList from './PostList';
+import Main from './Main';
 import '../App.css';
+import { Route, Switch } from "react-router-dom";
+import { Container, Grid } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
     return (
-      <div className="ui container">
-        <h1>Readable</h1>
-
-        <CategoryList />
-        <PostList />
-      </div>
+      <Container>
+        <Grid>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/:category" component={props => <Main {...props} />} />
+          </Switch>
+        </Grid>
+      </Container >
     );
   }
 }
