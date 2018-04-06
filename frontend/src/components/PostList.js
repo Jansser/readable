@@ -56,8 +56,6 @@ class PostList extends Component {
 
     return (
       <div>
-        <h2>{category}</h2>
-        
         <Menu compact>
           <Dropdown text='SortBy' options={sortOptions} defaultValue={orderBy} onChange={this.handleSortChange} simple item />
         </Menu>

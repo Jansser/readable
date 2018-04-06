@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { fetchCategories } from '../actions/categories';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
+import { capitalize } from '../utils/helpers';
 
 class CategoryList extends Component {
   static propTypes = {
@@ -32,7 +32,7 @@ class CategoryList extends Component {
         
         {categories.map(category => (
           <Menu.Item key={category.name}>
-            <Link to={`/${category.path}`}> {category.name} </Link>
+            <Link to={`/${category.path}`}> {capitalize(category.name)} </Link>
           </Menu.Item>
         ))}
       </Menu>
