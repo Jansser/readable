@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   fetchPost
 } from '../actions/posts';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Post from './Post';
 import { Grid } from 'semantic-ui-react';
+import CommentList from './CommentList';
 
 class PostDetail extends Component {
   static propTypes = {
@@ -20,12 +20,13 @@ class PostDetail extends Component {
   render() {
     const { post } = this.props;
 
-    console.log('Rendering', post);
-
     return (
       <Grid.Row centered>
         <Grid.Column width={12}>
           <Post post={post} />
+          { post.id &&
+            <CommentList postId={post.id}/>
+          }
         </Grid.Column>
       </Grid.Row>
     )
