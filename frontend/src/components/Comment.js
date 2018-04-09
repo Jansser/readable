@@ -17,7 +17,7 @@ class Comment extends Component {
               {formatTimeStamp(comment.timeStamp)}
             </Semantic.Comment.Metadata>
 
-            <Semantic.Comment.Text>How artistic!</Semantic.Comment.Text>
+            <Semantic.Comment.Text>{comment.body}</Semantic.Comment.Text>
           </Semantic.Comment.Content>
         </Semantic.Comment>
       </Semantic.Comment.Group>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchComments } from '../actions/comments';
 import Comment from './Comment';
 import { Segment, Header } from 'semantic-ui-react';
+import sortBy from 'sort-by';
 
 class CommentList extends Component {
   componentDidMount() {
@@ -13,17 +14,21 @@ class CommentList extends Component {
 
   render() {
     const { comments } = this.props;
-        
-    return (
-    <Segment>
-      {comments && 
-        <Header as='h3' dividing>Comments</Header>
-      }
       
-      {comments && 
-        comments.map( comment => <Comment key={comment.id} comment={comment} />) 
-      }
-    </Segment>
+    if(comments) {
+      comments.sort(sortBy('-voteScore'));
+    }
+
+    return (
+      <Segment>
+        {comments && 
+          <Header as='h3' dividing>Comments</Header>
+        }
+        
+        {comments && 
+          comments.map( comment => <Comment key={comment.id} comment={comment} />) 
+        }
+      </Segment>
     );
   }
 }
