@@ -14,13 +14,13 @@ import { BrowserRouter } from 'react-router-dom';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const logger = store => next => action => {
-  console.log(action.type);
-  console.info('dispatching', action);
+  // console.log(action.type);
+  // console.info('dispatching', action);
   
   let result = next(action);
   
-  console.log('next state', store.getState());
-  console.groupEnd(action.type);
+  // console.log('next state', store.getState());
+  // console.groupEnd(action.type);
   
   return result;
 }

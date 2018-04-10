@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { fetchPosts, fetchPostsByCategory, setOrderPosts } from '../actions/posts';
 import Post from './Post';
 import sortBy from 'sort-by';
-import { Message, Dropdown, Menu } from 'semantic-ui-react';
+import { Message, Dropdown, Menu, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class PostList extends Component {
   static propTypes = {
@@ -33,11 +34,11 @@ class PostList extends Component {
 
     const sortOptions = [
       {
-        text: 'Vote Score',
+        text: 'Popular',
         value: '-voteScore'
       },
       {
-        text: 'Date',
+        text: 'Recent',
         value: '-timestamp'
       }
     ];
@@ -59,6 +60,9 @@ class PostList extends Component {
         <Menu compact>
           <Dropdown text='SortBy' options={sortOptions} defaultValue={orderBy} onChange={this.handleSortChange} simple item />
         </Menu>
+        <Link to='/post/new'>
+          <Button floated='right' positive>Create Post</Button>
+        </Link>
 
         {posts.map(post => (
           <Post key={post.id} post={post} />

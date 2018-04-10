@@ -3,7 +3,8 @@ import {
   GET_POSTS,
   GET_CATEGORY_POSTS, 
   SET_ORDER_POSTS,
-  GET_POST 
+  GET_POST,
+  CREATE_POST
 } from './types';
 
 export const getPosts = (posts) => {
@@ -17,6 +18,13 @@ export const getPost = (post) => {
   return {
     type: GET_POST,
     post: post
+  };
+}
+
+export const createPostSuccess = (data) => {
+  return {
+      type: CREATE_POST,
+      payload: data
   };
 }
 
@@ -44,6 +52,13 @@ export const fetchPosts = () => (dispatch) =>
     API.fetchPosts().then(data => {
         dispatch(getPosts(data))
     }
+);
+
+export const createPost = (data, callback) => (dispatch) =>
+  API.createPost(data).then(data => {
+    callback();
+    dispatch(createPostSuccess(data))
+  }
 );
 
 export const fetchPostsByCategory = (category) => (dispatch) => 
