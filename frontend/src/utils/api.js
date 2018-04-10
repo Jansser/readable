@@ -65,3 +65,11 @@ export const editPost = (id, values) => {
     body: JSON.stringify(data)
   }).then(response => response.json());
 }
+
+export const deletePost = (id) => {
+  return fetch(`${SERVER_URL}/posts/${id}`, { 
+    ...options,
+    method: 'delete'
+  }).then(response => response.json());
+}
+

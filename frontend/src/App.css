@@ -45,3 +45,9 @@ body {
   clear: both;
   margin: 20px 0;
 }
+
+/* FIX - MODAL SEMANTIC UI */
+
+.ui.page.modals.transition.visible {
+  display: flex !important;
+}

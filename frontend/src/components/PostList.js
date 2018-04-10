@@ -6,6 +6,7 @@ import Post from './Post';
 import sortBy from 'sort-by';
 import { Message, Dropdown, Menu, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { capitalize } from '../utils/helpers';
 
 class PostList extends Component {
   static propTypes = {
@@ -46,7 +47,7 @@ class PostList extends Component {
     if (posts.length === 0) {
       return (
       <Message warning>
-        <p>There are no posts for <strong>{category}</strong>.</p>
+        <p>There are no posts for <strong>{capitalize(category) || 'All'}</strong>.</p>
       </Message>
       )
     }
@@ -65,7 +66,7 @@ class PostList extends Component {
         </Link>
 
         {posts.map(post => (
-          <Post key={post.id} post={post} />
+          <Post key={post.id} post={post}/>
         ))}
       </div>
     );

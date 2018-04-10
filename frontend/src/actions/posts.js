@@ -5,7 +5,8 @@ import {
   SET_ORDER_POSTS,
   GET_POST,
   CREATE_POST,
-  EDIT_POST
+  EDIT_POST,
+  DELETE_POST
 } from './types';
 
 export const getPosts = (posts) => {
@@ -32,6 +33,13 @@ export const createPostSuccess = (data) => {
 export const editPostSuccess = (data) => {
   return {
       type: EDIT_POST,
+      payload: data
+  };
+}
+
+function deletePostSuccess(data) {
+  return {
+      type: DELETE_POST,
       payload: data
   };
 }
@@ -73,6 +81,13 @@ export const editPost = (id, data, callback) => (dispatch) =>
   API.editPost(id, data).then(data => {
     callback();
     dispatch(editPostSuccess(data))
+  }
+);
+
+export const deletePost = (id, callback) => (dispatch) =>
+  API.deletePost(id).then(data => {
+    callback();
+    dispatch(deletePostSuccess(data))
   }
 );
 

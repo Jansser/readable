@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Label, Segment, Button, Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Label, Segment, Button, Icon, Confirm } from 'semantic-ui-react';
 import { formatTimeStamp } from '../utils/helpers';
+import { deletePost } from '../actions/posts';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
   static propTypes = {
     post: PropTypes.object.isRequired,
   };
 
+  state = {
+    modalDeleteOpen: false
+  }
+
+  handleDeleteConfirm = () => {
+    const { deletePost, post } = this.props;
+
+    deletePost(post.id, () => {
+      this.handleDeleteCancel();
+    });
+  }
+
+  handleDeleteCancel = () => {
+    this.setState(() => ({
+      modalDeleteOpen: false
+    }));
+  }
+
+  showDeleteConfirm = () => {
+    this.setState(() => ({
+      modalDeleteOpen: true
+    }));
+  }
+
   render() {
     const { post } = this.props;
+    const { modalDeleteOpen } = this.state;
 
     return (
       <Segment piled>
@@ -24,7 +51,7 @@ class Post extends Component {
             <li>By {post.author}</li>
           </ul>
         </header>
-        
+
         <div className='post-body'>
           <p>{post.body}</p>
         </div>
@@ -39,16 +66,35 @@ class Post extends Component {
             Edit
           </Button>
         </Link>
+      
         
-        <Button icon labelPosition='left' size='small'>
+        <Button icon labelPosition='left' size='small' onClick={this.showDeleteConfirm}>
           <Icon name='trash' />
           Delete
+          <Confirm
+            open={modalDeleteOpen}
+            onCancel={this.handleDeleteCancel}
+            onConfirm={this.handleDeleteConfirm}
+          />
         </Button>
-        
+
         <Label circular color='grey'>{post.voteScore}</Label>
       </Segment>
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+  };
+}
 
-export default Post;
+const mapDispatchToProps = dispatch => ({
+  deletePost: (id, callback) => dispatch(deletePost(id, callback)),
+});
+
+//send action to delete
+//show loading
+//get back to list
+//show message post deleted
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);;

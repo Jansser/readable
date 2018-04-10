@@ -4,4 +4,9 @@ import posts from './posts';
 import comments from './comments';
 import { reducer as formReducer } from 'redux-form';
 
-export default combineReducers({categories, posts, comments, form: formReducer});
+export default combineReducers({ 
+  categories, 
+  posts, 
+  comments, 
+  form: formReducer
+});
