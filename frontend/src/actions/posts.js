@@ -4,7 +4,8 @@ import {
   GET_CATEGORY_POSTS, 
   SET_ORDER_POSTS,
   GET_POST,
-  CREATE_POST
+  CREATE_POST,
+  EDIT_POST
 } from './types';
 
 export const getPosts = (posts) => {
@@ -24,6 +25,13 @@ export const getPost = (post) => {
 export const createPostSuccess = (data) => {
   return {
       type: CREATE_POST,
+      payload: data
+  };
+}
+
+export const editPostSuccess = (data) => {
+  return {
+      type: EDIT_POST,
       payload: data
   };
 }
@@ -58,6 +66,13 @@ export const createPost = (data, callback) => (dispatch) =>
   API.createPost(data).then(data => {
     callback();
     dispatch(createPostSuccess(data))
+  }
+);
+
+export const editPost = (id, data, callback) => (dispatch) =>
+  API.editPost(id, data).then(data => {
+    callback();
+    dispatch(editPostSuccess(data))
   }
 );
 

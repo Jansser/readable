@@ -23,7 +23,7 @@ class App extends Component {
             <Route exact path="/post/new"  component={PostForm} />
             <Route exact path="/:category" component={props => <Main {...props} />} />
             <Route exact path="/post/:id" component={PostDetail} />
-            <Route exact path="/post/edit/:id" component={PostForm} />
+            <Route exact path="/post/edit/:id" component={props => <PostForm {...props} />} />
           </Switch>
         </Grid>
       </Container >

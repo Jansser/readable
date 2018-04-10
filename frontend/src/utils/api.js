@@ -50,3 +50,18 @@ export const createPost = (values) => {
     body: JSON.stringify(data)
   }).then(response => response.json());
 }
+
+export const editPost = (id, values) => {
+  const { title, body } = values;
+
+  const data = {
+    title,
+    body
+  }
+
+  return fetch(`${SERVER_URL}/posts/${id}`, { 
+    ...options,
+    method: 'put',
+    body: JSON.stringify(data)
+  }).then(response => response.json());
+}
