@@ -44,10 +44,38 @@ body {
 .post-body {
   clear: both;
   margin: 20px 0;
+  display: flex;
 }
 
 /* FIX - MODAL SEMANTIC UI */
 
 .ui.page.modals.transition.visible {
   display: flex !important;
+}
+
+.vote {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 30px; 
+  flex: 0 0 30px; 
+}
+
+.vote-icon {
+  cursor: pointer;
+}
+
+.vote-score {
+  margin: 5px;
+}
+
+.ui.comments .comment {
+  display: flex;
+}
+
+.post-comments {
+  display: inline-block;
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
 }

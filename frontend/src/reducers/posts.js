@@ -3,7 +3,8 @@ import {
   SET_ORDER_POSTS,
   GET_CATEGORY_POSTS,
   DELETE_POST,
-  GET_POST
+  GET_POST,
+  VOTE_ON_POST
 } from '../actions/types';
 
 const initialState = {
@@ -13,10 +14,6 @@ const initialState = {
 };
 
 const posts = (state = initialState, action) => {
-  if(action.type === DELETE_POST) {
-    console.log('State', state);
-  }
-
   switch (action.type) {
     case GET_POSTS:
       return {
@@ -44,6 +41,12 @@ const posts = (state = initialState, action) => {
         ...state,
         post: action.post
       };
+    case VOTE_ON_POST:
+      return {
+        ...state,
+        posts: state.posts.map(post => post.id === action.payload.id ? action.payload : post),
+        post: action.payload
+      }
     default:
       return state;
   }

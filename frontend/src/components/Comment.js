@@ -3,6 +3,7 @@ import * as Semantic from 'semantic-ui-react'
 import { formatTimeStamp, capitalize } from '../utils/helpers';
 import { deleteComment, selectComment } from '../actions/comments';
 import { connect } from 'react-redux';
+import Vote from './Vote';
 
 class Comment extends Component {
   handleEdit = () => {
@@ -42,6 +43,8 @@ class Comment extends Component {
     return (
       <Semantic.Comment.Group>
         <Semantic.Comment>
+          <Vote item={comment} type='comment'/>
+          
           <Semantic.Comment.Content>
             <Semantic.Comment.Author as='span'>{capitalize(comment.author)}</Semantic.Comment.Author>
             
@@ -52,6 +55,7 @@ class Comment extends Component {
             <Semantic.Comment.Text>{comment.body}</Semantic.Comment.Text>
 
             <Semantic.Comment.Actions>
+              
               <Semantic.Comment.Action onClick={this.handleEdit}><Semantic.Icon name='edit'/> Edit</Semantic.Comment.Action>
               <Semantic.Comment.Action onClick={this.showDeleteConfirm}><Semantic.Icon name='cancel' /> 
                 Delete

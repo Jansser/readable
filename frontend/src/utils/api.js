@@ -73,6 +73,14 @@ export const deletePost = (id) => {
   }).then(response => response.json());
 }
 
+export const voteOnPost = (id, option) => {
+  return fetch(`${SERVER_URL}/posts/${id}`, { 
+    ...options,
+    method: 'post',
+    body: JSON.stringify({ option })
+  }).then(response => response.json());
+}
+
 export const addComment = (postId, values) => {
   const { body, author } = values;
   
@@ -111,5 +119,14 @@ export const deleteComment = (id) => {
   return fetch(`${SERVER_URL}/comments/${id}`, { 
     ...options,
     method: 'delete'
+  }).then(response => response.json());
+}
+
+
+export const voteOnComment = (id, option) => {
+  return fetch(`${SERVER_URL}/comments/${id}`, { 
+    ...options,
+    method: 'post',
+    body: JSON.stringify({ option })
   }).then(response => response.json());
 }

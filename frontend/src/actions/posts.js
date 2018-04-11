@@ -6,7 +6,8 @@ import {
   GET_POST,
   CREATE_POST,
   EDIT_POST,
-  DELETE_POST
+  DELETE_POST,
+  VOTE_ON_POST
 } from './types';
 
 export const getPosts = (posts) => {
@@ -43,6 +44,13 @@ export const deletePostSuccess = (data) => {
       payload: data
   };
 }
+
+export const voteOnPostSuccess = (data) => {
+  return {
+    type: VOTE_ON_POST,
+    payload: data
+  };
+};
 
 export const getCategoryPosts = (posts) => {
   return {
@@ -88,6 +96,12 @@ export const deletePost = (id, callback) => (dispatch) =>
   API.deletePost(id).then(data => {
     callback();
     dispatch(deletePostSuccess(data))
+  }
+);
+
+export const voteOnPost = (id, voteOption) => (dispatch) =>
+  API.voteOnPost(id, voteOption).then(data => {
+    dispatch(voteOnPostSuccess(data))
   }
 );
 

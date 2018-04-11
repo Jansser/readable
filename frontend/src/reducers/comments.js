@@ -3,7 +3,8 @@ import {
   ADD_COMMENT, 
   DELETE_COMMENT,
   SELECT_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  VOTE_ON_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -36,8 +37,13 @@ const comments = (state = initialState, action) => {
         comments: state.comments.filter(comment => comment.id !== action.comment.id),
         comment: {}
       };
+    case VOTE_ON_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.map( comment => comment.id === action.comment.id ? action.comment : comment ),
+        comment: action.comment
+      };
     case SELECT_COMMENT:
-
       return {
         ...state,
         comment: action.comment

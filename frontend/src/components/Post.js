@@ -5,6 +5,7 @@ import { formatTimeStamp } from '../utils/helpers';
 import { deletePost } from '../actions/posts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Vote from './Vote';
 
 class Post extends Component {
   static propTypes = {
@@ -45,7 +46,7 @@ class Post extends Component {
           <Link to={`/post/${post.id}`}>
             <Label color='green' ribbon>{post.title}</Label>
           </Link>
-
+          
           <ul className='clear'>
             <li>{formatTimeStamp(post.timestamp)}</li>
             <li>By {post.author}</li>
@@ -53,32 +54,32 @@ class Post extends Component {
         </header>
 
         <div className='post-body'>
+          <Vote item={post} type='post'/>
           <p>{post.body}</p>
         </div>
 
-        <p>
-          <Icon name='comments' /> {post.commentCount} comments
-        </p>
-
-        <Link to={`/post/edit/${post.id}`}>
-          <Button icon labelPosition='left' size='small' >
-            <Icon name='edit' />
-            Edit
+        <div>
+          <Link to={`/post/edit/${post.id}`}>
+            <Button icon labelPosition='left' size='small' >
+              <Icon name='edit' />
+              Edit
+            </Button>
+          </Link>
+          
+          <Button icon labelPosition='left' size='small' onClick={this.showDeleteConfirm}>
+            <Icon name='trash' />
+            Delete
+            <Confirm
+              open={modalDeleteOpen}
+              onCancel={this.handleDeleteCancel}
+              onConfirm={this.handleDeleteConfirm}
+            />
           </Button>
-        </Link>
-      
-        
-        <Button icon labelPosition='left' size='small' onClick={this.showDeleteConfirm}>
-          <Icon name='trash' />
-          Delete
-          <Confirm
-            open={modalDeleteOpen}
-            onCancel={this.handleDeleteCancel}
-            onConfirm={this.handleDeleteConfirm}
-          />
-        </Button>
 
-        <Label circular color='grey'>{post.voteScore}</Label>
+          <span className='post-comments'>
+            <Icon name='comments' /> {post.commentCount} comments
+          </span>
+        </div>
       </Segment>
     )
   }

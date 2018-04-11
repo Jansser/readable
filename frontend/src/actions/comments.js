@@ -5,7 +5,8 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   SELECT_COMMENT,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  VOTE_ON_COMMENT
 } from './types';
 
 export const getComments = (comments) => {
@@ -43,6 +44,13 @@ export const selectedComment = (data) => {
   }
 }
 
+export const voteOnCommentSuccess = (data) => {
+  return {
+    type: VOTE_ON_COMMENT,
+    comment: data
+  }
+}
+
 export const fetchComments = (postId) => (dispatch) =>
   API.fetchComments(postId).then(data => 
     dispatch(getComments(data))
@@ -72,3 +80,9 @@ export const deleteComment = (id, callback) => (dispatch) =>
 export const selectComment = (comment) => (dispatch) => {
   dispatch(selectedComment(comment));
 }
+
+export const voteOnComment = (id, option) => (dispatch) => 
+  API.voteOnComment(id, option).then(data =>  {
+    dispatch(voteOnCommentSuccess(data))
+  }
+);
