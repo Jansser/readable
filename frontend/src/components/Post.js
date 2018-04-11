@@ -92,9 +92,4 @@ const mapDispatchToProps = dispatch => ({
   deletePost: (id, callback) => dispatch(deletePost(id, callback)),
 });
 
-//send action to delete
-//show loading
-//get back to list
-//show message post deleted
-
 export default connect(mapStateToProps, mapDispatchToProps)(Post);;

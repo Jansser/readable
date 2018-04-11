@@ -37,7 +37,7 @@ export const editPostSuccess = (data) => {
   };
 }
 
-function deletePostSuccess(data) {
+export const deletePostSuccess = (data) => {
   return {
       type: DELETE_POST,
       payload: data

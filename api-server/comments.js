@@ -56,7 +56,10 @@ function get (token, id) {
 
 function add (token, comment) {
   return new Promise((res) => {
+    console.log('Comment', comment);
+    
     let comments = getData(token)
+
 
     comments[comment.id] = {
       id: comment.id,

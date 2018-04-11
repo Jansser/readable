@@ -4,6 +4,7 @@ import { fetchComments } from '../actions/comments';
 import Comment from './Comment';
 import { Segment, Header } from 'semantic-ui-react';
 import sortBy from 'sort-by';
+import CommentForm from './CommentForm';
 
 class CommentList extends Component {
   componentDidMount() {
@@ -13,10 +14,10 @@ class CommentList extends Component {
   }  
 
   render() {
-    const { comments } = this.props;
-      
+    const { comments, postId, orderBy } = this.props;
+    
     if(comments) {
-      comments.sort(sortBy('-voteScore'));
+      comments.sort(sortBy(orderBy));
     }
 
     return (
@@ -28,6 +29,7 @@ class CommentList extends Component {
         {comments && 
           comments.map( comment => <Comment key={comment.id} comment={comment} />) 
         }
+        <CommentForm postId={postId}/>
       </Segment>
     );
   }
@@ -35,7 +37,8 @@ class CommentList extends Component {
 
 const mapStateToProps = state => {
   return {
-    comments: state.comments
+    comments: state.comments.comments,
+    orderBy: state.comments.orderBy
   };
 }
 

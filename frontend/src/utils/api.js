@@ -73,3 +73,27 @@ export const deletePost = (id) => {
   }).then(response => response.json());
 }
 
+export const addComment = (postId, values) => {
+  const { body, author } = values;
+  
+  const data = {
+    id: guid(),
+    timestamp: Date.now(),
+    body,
+    author,
+    parentId: postId
+  }
+
+  return fetch(`${SERVER_URL}/comments`, { 
+    ...options,
+    method: 'post',
+    body: JSON.stringify(data)
+  }).then(response => response.json());
+}
+
+export const deleteComment = (id) => {
+  return fetch(`${SERVER_URL}/comments/${id}`, { 
+    ...options,
+    method: 'delete'
+  }).then(response => response.json());
+}

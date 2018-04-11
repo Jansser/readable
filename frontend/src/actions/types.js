@@ -6,4 +6,6 @@ export const CREATE_POST = 'CREATE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
 export const SET_ORDER_POSTS = 'SET_ORDER_POSTS';
+export const DELETE_COMMENT = 'DELETE_COMMENT';

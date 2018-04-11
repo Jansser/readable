@@ -47,7 +47,7 @@ class PostList extends Component {
     if (posts.length === 0) {
       return (
       <Message warning>
-        <p>There are no posts for <strong>{capitalize(category) || 'All'}</strong>.</p>
+        <p>There are no posts for <strong>{category ? capitalize(category) : 'All'}</strong>.</p>
       </Message>
       )
     }
