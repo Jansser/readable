@@ -91,6 +91,22 @@ export const addComment = (postId, values) => {
   }).then(response => response.json());
 }
 
+export const editComment = (id, values) => {
+  const { body } = values;
+
+  const data = {
+    timestamp: Date.now(),
+    body
+  }
+
+  return fetch(`${SERVER_URL}/comments/${id}`, { 
+    ...options,
+    method: 'put',
+    body: JSON.stringify(data)
+  }).then(response => response.json());
+}
+
+
 export const deleteComment = (id) => {
   return fetch(`${SERVER_URL}/comments/${id}`, { 
     ...options,

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import * as Semantic from 'semantic-ui-react'
 import { formatTimeStamp, capitalize } from '../utils/helpers';
-import { deleteComment } from '../actions/comments';
+import { deleteComment, selectComment } from '../actions/comments';
 import { connect } from 'react-redux';
 
 class Comment extends Component {
-  handleEdit() {
+  handleEdit = () => {
+    const { comment, selectComment } = this.props;
+
+    selectComment(comment);
   }
 
   state = {
@@ -66,13 +69,11 @@ class Comment extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-  };
-}
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   deleteComment: (id, callback) => dispatch(deleteComment(id, callback)),
+  selectComment: (comment) => dispatch(selectComment(comment))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

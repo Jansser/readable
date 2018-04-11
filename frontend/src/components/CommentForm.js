@@ -2,28 +2,34 @@ import React, { Component } from 'react';
 import { Form, Button, Divider } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { TextAreaField, InputField } from 'react-semantic-redux-form';
-import { addComment } from '../actions/comments';
+import { addComment, editComment } from '../actions/comments';
 import { connect } from 'react-redux';
 
 class CommentForm extends Component {
   submit = values => {
-    const { addComment, postId } = this.props;
+    const { addComment, editComment, postId, comment } = this.props;
     
-    addComment(postId, values, () => {
-    });
+    if(comment.id) {
+      editComment(comment.id, values, () => {});
+    } else {
+      addComment(postId, values, () => {});
+    }
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, comment } = this.props;
+    
+    let labelButton = comment.id ? 'Edit' : 'Add Commment';
+    let disabled = comment.id ? true : false;
 
     return (
       <Form reply onSubmit={handleSubmit(this.submit)}>
         <Divider />
 
-        <Field name='author' component={InputField} label='Author' placeholder='Author'/>
+        <Field name='author' component={InputField} label='Author' placeholder='Author' disabled={disabled}/>
         <Field name='body' component={TextAreaField} label='Comment'/>
 
-        <Button content='Add Comment' labelPosition='left' icon='edit' positive/>
+        <Button content={labelButton} labelPosition='left' icon='edit' positive/>
       </Form>
     )
   }
@@ -31,12 +37,14 @@ class CommentForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    initialValues: {}
+    initialValues: state.comments.comment,
+    comment: state.comments.comment
   };
 }
 
 const mapDispatchToProps = dispatch => ({
-  addComment: (postId, values, callback) => { dispatch(addComment(postId, values, callback)) }
+  addComment: (postId, values, callback) => { dispatch(addComment(postId, values, callback)) },
+  editComment: (id, values, callback) => { dispatch(editComment(id, values, callback)) }
 });
 
 CommentForm = reduxForm({
