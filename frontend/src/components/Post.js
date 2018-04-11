@@ -83,10 +83,8 @@ class Post extends Component {
     )
   }
 }
-const mapStateToProps = state => {
-  return {
-  };
-}
+
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   deletePost: (id, callback) => dispatch(deletePost(id, callback)),

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Post from './Post';
 import { Grid } from 'semantic-ui-react';
 import CommentList from './CommentList';
+import NotFound from './NotFound';
 
 class PostDetail extends Component {
   static propTypes = {
@@ -21,14 +22,17 @@ class PostDetail extends Component {
     const { post } = this.props;
 
     return (
-      <Grid.Row centered>
-        <Grid.Column width={12}>
-          <Post post={post} />
-          { post.id &&
-            <CommentList postId={post.id}/>
-          }
-        </Grid.Column>
-      </Grid.Row>
+      (!post || !post.id || post.deleted) ?
+        <NotFound />
+      :      
+        <Grid.Row centered>
+          <Grid.Column width={12}>
+            <Post post={post} />
+            { post.id &&
+              <CommentList postId={post.id}/>
+            }
+          </Grid.Column>
+        </Grid.Row>
     )
   }
 }

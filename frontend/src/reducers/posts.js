@@ -13,6 +13,10 @@ const initialState = {
 };
 
 const posts = (state = initialState, action) => {
+  if(action.type === DELETE_POST) {
+    console.log('State', state);
+  }
+
   switch (action.type) {
     case GET_POSTS:
       return {
@@ -32,10 +36,12 @@ const posts = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(post => post.id !== action.payload.id)
+        posts: state.posts.filter(post => post.id !== action.payload.id),
+        post: action.payload
       };
     case GET_POST:
       return {
+        ...state,
         post: action.post
       };
     default:
