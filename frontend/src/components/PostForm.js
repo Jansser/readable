@@ -47,7 +47,7 @@ class PostForm extends Component {
         <Grid.Column width={12}>
           <Form onSubmit={handleSubmit(this.submit)}>
             <Form.Field>
-              <Field name='title' component={InputField} label='Title' placeholder='Title'/>
+              <Field name='title' component={InputField} label='Title' placeholder='Title' autoFocus/>
             </Form.Field>
             <Form.Group widths='equal'>
               <Field name='category' component={SelectField} label='Category' placeholder='Category' options={options} />

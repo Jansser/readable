@@ -32,7 +32,6 @@ class PostList extends Component {
 
   render() {
     const { posts, orderBy, category } = this.props;
-
     const sortOptions = [
       {
         text: 'Popular',
@@ -47,7 +46,9 @@ class PostList extends Component {
     if (posts.length === 0) {
       return (
       <Message warning>
-        <p>There are no posts for <strong>{category ? capitalize(category) : 'All'}</strong>.</p>
+        <p>There are no posts for <strong>{category ? capitalize(category) : 'All'}  
+          <Link to='/post/new'> click here </Link>
+        </strong> to create one.</p>
       </Message>
       )
     }

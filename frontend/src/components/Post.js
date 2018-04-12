@@ -37,7 +37,7 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const { post, comments } = this.props;
     const { modalDeleteOpen } = this.state;
 
     return (
@@ -77,7 +77,7 @@ class Post extends Component {
           </Button>
 
           <span className='post-comments'>
-            <Icon name='comments' /> {post.commentCount} comments
+            <Icon name='comments' /> {comments.length} comments
           </span>
         </div>
       </Segment>
@@ -85,8 +85,11 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = state => state;
-
+const mapStateToProps = state =>(state) => {
+  return {
+    comments: state.comments.comments,
+  };
+}
 const mapDispatchToProps = dispatch => ({
   deletePost: (id, callback) => dispatch(deletePost(id, callback)),
 });
