@@ -26,17 +26,13 @@ class CategoryList extends Component {
           <Menu.Header>Categories</Menu.Header>
         </Menu.Item>
         
-        <Menu.Item link>
-          <Link to='/'>
-            <strong>All</strong>
-          </Link>
+        <Menu.Item link as={Link} to={'/'}>
+          <strong>All</strong>
         </Menu.Item>
         
         {categories.map(category => (
-          <Menu.Item key={category.name} link>
-            <Link to={`/${category.path}`}>
-              <strong>{capitalize(category.name)}</strong>
-            </Link>
+          <Menu.Item key={category.name} link as={Link} to={`/${category.path}`}>
+            <strong>{capitalize(category.name)}</strong>
           </Menu.Item>
         ))}
       </Menu>

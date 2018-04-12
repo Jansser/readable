@@ -37,6 +37,8 @@ class PostForm extends Component {
 
   render() {
     const { id } = this.props.match.params;
+    console.log( id );
+
     const { categories, handleSubmit } = this.props;
     const options = categories.map( category => {
       return { key: category.name, value: category.name, text: category.name };
@@ -78,7 +80,7 @@ class PostForm extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     categories: state.categories,
-    initialValues: state.posts.post
+    initialValues: id ? state.posts.post : {}
   };
 }
 

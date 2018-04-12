@@ -86,3 +86,10 @@ a {
 a:hover {
   color: black;
 }
+
+ui.item > a {
+  background-color: aliceblue;
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+}
