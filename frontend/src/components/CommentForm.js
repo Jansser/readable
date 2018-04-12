@@ -29,7 +29,7 @@ class CommentForm extends Component {
         <Field name='author' component={InputField} label='Author' placeholder='Author' disabled={disabled}/>
         <Field name='body' component={TextAreaField} label='Comment'/>
 
-        <Button content={labelButton} labelPosition='left' icon='edit' positive/>
+        <Button content={labelButton} labelPosition='left' icon='edit' color='black'/>
       </Form>
     )
   }

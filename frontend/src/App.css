@@ -1,6 +1,5 @@
 body {
-  background-color: #fcfcfc;
-  margin-top: 20px;
+  background-color: #f1f1f1;
 }
 
 .post-header ul {
@@ -78,4 +77,12 @@ body {
   position: absolute;
   right: 14px;
   bottom: 14px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
 }

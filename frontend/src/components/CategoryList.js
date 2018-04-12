@@ -21,18 +21,22 @@ class CategoryList extends Component {
     const { categories } = this.props;
 
     return (
-      <Menu vertical>
+      <Menu vertical >
         <Menu.Item>
           <Menu.Header>Categories</Menu.Header>
         </Menu.Item>
         
-        <Menu.Item>
-          <Link to='/'>All</Link>
+        <Menu.Item link>
+          <Link to='/'>
+            <strong>All</strong>
+          </Link>
         </Menu.Item>
         
         {categories.map(category => (
-          <Menu.Item key={category.name}>
-            <Link to={`/${category.path}`}> {capitalize(category.name)} </Link>
+          <Menu.Item key={category.name} link>
+            <Link to={`/${category.path}`}>
+              <strong>{capitalize(category.name)}</strong>
+            </Link>
           </Menu.Item>
         ))}
       </Menu>

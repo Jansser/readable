@@ -44,7 +44,7 @@ class Post extends Component {
       <Segment piled>
         <header className='post-header'>
           <Link to={`/post/${post.id}`}>
-            <Label color='green' ribbon>{post.title}</Label>
+            <Label color='red' ribbon>{post.title}</Label>
           </Link>
           
           <ul className='clear'>
@@ -60,13 +60,13 @@ class Post extends Component {
 
         <div>
           <Link to={`/post/edit/${post.id}`}>
-            <Button icon labelPosition='left' size='small' >
+            <Button icon labelPosition='left' size='small' color='black'>
               <Icon name='edit' />
               Edit
             </Button>
           </Link>
           
-          <Button icon labelPosition='left' size='small' onClick={this.showDeleteConfirm}>
+          <Button icon labelPosition='left' size='small' onClick={this.showDeleteConfirm} color='black'>
             <Icon name='trash' />
             Delete
             <Confirm

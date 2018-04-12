@@ -57,7 +57,7 @@ class PostForm extends Component {
               <Field name='body' component={TextAreaField} label='Content' placeholder='Talk to us...' />
             </Form.Field>
 
-            <Button positive type='submit' icon labelPosition='left'>
+            <Button color='black' type='submit' icon labelPosition='left'>
               <Icon name='edit' />
               { id ? 'Edit' : 'Create' }
             </Button>
@@ -75,7 +75,7 @@ class PostForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     categories: state.categories,
     initialValues: state.posts.post

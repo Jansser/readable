@@ -63,7 +63,7 @@ class PostList extends Component {
           <Dropdown text='SortBy' options={sortOptions} defaultValue={orderBy} onChange={this.handleSortChange} simple item />
         </Menu>
         <Link to='/post/new'>
-          <Button floated='right' positive>Create Post</Button>
+          <Button floated='right' color='black'>Create Post</Button>
         </Link>
 
         {posts.map(post => (
