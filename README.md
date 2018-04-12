@@ -6,7 +6,7 @@ sers will also be able to edit and delete posts and comments.
 
 ### Getting Started
 
-``````
+```
 git clone https://github.com/Jansser/readable.git
 ```
 
