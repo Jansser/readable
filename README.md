@@ -28,6 +28,7 @@ Then you are ready to start the client app
 
 ```
 cd readable/frontend
+```
 
 ```
 npm install
