@@ -6,6 +6,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import PostDetail from './PostDetails';
 import PostForm from './PostForm';
 import Header from './Header';
+import NotFound from './NotFound';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
               <Route exact path="/:category" component={props => <Main {...props} />} />
               <Route exact path="/post/:id" component={PostDetail} />
               <Route exact path="/post/edit/:id" component={props => <PostForm {...props} />} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </Grid>
         </Container >
